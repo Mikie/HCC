@@ -1,36 +1,49 @@
 [ ![Discord](https://canary.discordapp.com/api/guilds/411619823445999637/widget.png) ](https://discord.gg/8GakFcT)
-# HCC (Hypixel Community Client - Not affiliated with Hypixel INC, produced by independent developers)
-## What is HCC? ##
-The HCC is a Minecraft modification in development. It will combine many popular features in addition to suggestions and ideas from the community to provide a unique experience designed for Hypixel.
+[ ![Travis-CI](https://travis-ci.org/HyperiumClient/Hyperium.svg?branch=master)](https://travis-ci.org/HyperiumClient/Hyperium)
+# Hyperium (A Community Client for Hypixel - Not affiliated with Hypixel INC, produced by independent developers)
+## What is Hyperium? ##
+The Hyperium is a Minecraft modification in development. It will combine many popular features in addition to suggestions and ideas from the community to provide a unique experience designed for Hypixel.
 
 ## Features ##
-
+- [ChromaHUD](https://www.youtube.com/watch?v=eyh6pcsGMpo)
+- [Keystrokes v4](https://www.youtube.com/watch?v=tA1SmI8nfY4)
+- [MouseDelayFix](https://prplz.io/mousedelayfix)
+- [NoCloseMyChat](https://hypixel.net/threads/1260752/)
+- [1.7 Animations](https://www.youtube.com/watch?v=9-LoFff-3fI)
+- [Levelhead](https://sk1er.club/levelhead)
+- [AutoGG](https://www.youtube.com/watch?v=1eETPGuSQWA)
+- [AutoWho](https://www.youtube.com/watch?v=osJW53GA_1I)
+- [ToggleChat](https://www.youtube.com/watch?v=guD8kAk-Wn4)
+- [MemoryFix](https://prplz.io/memoryfix)
+- [Perspective Mod](https://www.youtube.com/watch?v=7FdMMpzNdUk)
+- [Sidebar Mod](https://www.youtube.com/watch?v=cn9VvT43yRs)
+- [ShadowPlay Integration](https://www.nvidia.com/en-us/geforce/geforce-experience/shadowplay/)
 ## Contributing ##
 
 ## Building the project with IntelliJ ##
 
-**stop.**
+If you don't know how, you shouldn't. Go join our beta in <a href="https://discord.gg/RNyRgtv">Discord</a>, or wait for release!
 
 ## FAQ ##
-Q: PLEASE HELP ME I CAN'T BUILD THE PROJECT!
+Q: Please help, I can't build Hyperium!
 
-A: JUST **WAIT**
+A: Wait for a new beta or release! 
 
 
-Q: RELEASE, WHEN??
+Q: Release, when?
 
-A: WE DON'T KNOW!
+A: We don't know! However, open beta testing has began at our <a href="https://discord.gg/RNyRgtv">Discord</a>!
 
 
 Q: ETA?
 
-A: DON'T KNOW
+A: For beta, now! Join the <a href="https://discord.gg/RNyRgtv">Discord</a>! For release, we don't know!
 
 ## Addons ##
-**Requirement:** Built HCC, JDK 8+, IDE
+**Requirement:** Built Hyperium, JDK 8+, IDE
 
 **Dependency:**
-add HCC that you built as dependency for the project
+add Hyperium that you built as dependency for the project
 
 ```java
 package me.cubxity;
@@ -58,3 +71,13 @@ public class TestMod {
 [![](https://cdn.discordapp.com/avatars/248159137370734601/8a8b49df90cda7ccd55f28c1f5293ad6.png)](https://github.com/CoalCoding)
 [![](https://cdn.discordapp.com/avatars/247785387919933440/e8f6af129f0d6d4db93d8c7360aac15a.png)](https://github.com/KevinPriv)
 [![](https://cdn.discordapp.com/avatars/290921387655430144/1495ae41593665e29f683d63d502c600.png)](https://github.com/VRCube)
+
+
+## Special Thanks ##
+
+[![yk](https://www.yourkit.com/images/yklogo.png)](https://www.yourkit.com/java/profiler/)
+
+YourKit supports open source projects with its full-featured Java Profiler.
+YourKit, LLC is the creator of <a href="https://www.yourkit.com/java/profiler/">YourKit Java Profiler</a>
+and <a href="https://www.yourkit.com/.net/profiler/">YourKit .NET Profiler</a>,
+innovative and intelligent tools for profiling Java and .NET applications.

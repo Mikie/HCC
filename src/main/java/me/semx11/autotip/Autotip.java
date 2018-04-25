@@ -1,8 +1,27 @@
+/*
+ *     Copyright (C) 2018  Hyperium <https://hyperium.cc/>
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU Lesser General Public License as published
+ *     by the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU Lesser General Public License for more details.
+ *
+ *     You should have received a copy of the GNU Lesser General Public License
+ *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package me.semx11.autotip;
 
-import com.hcc.HCC;
-import com.hcc.event.EventBus;
-import com.hcc.commands.BaseCommand;
+import cc.hyperium.Hyperium;
+import cc.hyperium.commands.BaseCommand;
+import cc.hyperium.event.EventBus;
+import cc.hyperium.mods.AbstractMod;
+import cc.hyperium.utils.ChatColor;
 import me.semx11.autotip.command.AutotipCommand;
 import me.semx11.autotip.command.LimboCommand;
 import me.semx11.autotip.command.TipHistoryCommand;
@@ -24,7 +43,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Autotip {
+public class Autotip extends AbstractMod {
 
     public static final String MODID = "autotip";
     public static final String VERSION_STRING = "2.0.3";
@@ -42,7 +61,20 @@ public class Autotip {
 
     public static int totalTipsSent;
     public static List<String> alreadyTipped = new ArrayList<>();
-
+    
+    /**
+     * The metadata of Autotip
+     */
+    private final Metadata meta;
+    
+    public Autotip() {
+        Metadata metadata = new Metadata(this, "Autotip", "2.0.3", "Semx11, 2pi, Sk1er");
+    
+        metadata.setDisplayName(ChatColor.AQUA + "Autotip");
+    
+        this.meta = metadata;
+    }
+    
     public Autotip init() {
         try {
             playerUUID = Minecraft.getMinecraft().getSession().getProfile().getId().toString();
@@ -68,17 +100,22 @@ public class Autotip {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NullPointerException e2) {
-            HCC.LOGGER.debug("[Auto-GG] Invalid UUID detected; Not logged in?.");
+            Hyperium.LOGGER.debug("[Auto-GG] Invalid UUID detected; Not logged in?.");
         }
         return this;
     }
-
+    
+    @Override
+    public Metadata getModMetadata() {
+        return this.meta;
+    }
+    
     private void registerEvents(Object... events) {
         Arrays.asList(events).forEach(EventBus.INSTANCE::register);
     }
 
     private void registerCommands(BaseCommand... commands) {
-        Arrays.asList(commands).forEach((e) -> HCC.INSTANCE.getHandlers().getHCCCommandHandler().registerCommand(e));
+        Arrays.asList(commands).forEach((e) -> Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(e));
     }
 
 }

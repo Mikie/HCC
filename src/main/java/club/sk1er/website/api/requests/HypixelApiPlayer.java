@@ -1,26 +1,25 @@
 /*
- *     Hypixel Community Client, Client optimized for Hypixel Network
- *     Copyright (C) 2018  HCC Dev Team
+ *     Copyright (C) 2018  Hyperium <https://hyperium.cc/>
  *
  *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU Affero General Public License as published
+ *     it under the terms of the GNU Lesser General Public License as published
  *     by the Free Software Foundation, either version 3 of the License, or
  *     (at your option) any later version.
  *
  *     This program is distributed in the hope that it will be useful,
  *     but WITHOUT ANY WARRANTY; without even the implied warranty of
  *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU Affero General Public License for more details.
+ *     GNU Lesser General Public License for more details.
  *
- *     You should have received a copy of the GNU Affero General Public License
+ *     You should have received a copy of the GNU Lesser General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package club.sk1er.website.api.requests;
 
+import cc.hyperium.utils.JsonHolder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.hcc.utils.JsonHolder;
 import net.hypixel.api.GameType;
 import net.hypixel.api.util.ILeveling;
 
@@ -29,7 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by mitchellkatz on 3/3/17.
+ * @author Sk1er
  */
 public class HypixelApiPlayer implements HypixelApiObject {
 
@@ -44,7 +43,7 @@ public class HypixelApiPlayer implements HypixelApiObject {
     }
 
 
-    public double getTotalXP() {
+    public double getsafTotalXP() {
         return ILeveling.getTotalExpToLevel(getRoot().optInt("oldLevel") + 1) + getRoot().optInt(ILeveling.EXP_FIELD);
     }
 
@@ -193,6 +192,35 @@ public class HypixelApiPlayer implements HypixelApiObject {
 
     public String getDisplayString() {
         return getRoot().optString("display");
+    }
+
+    public Rank getRank() {
+        return Rank.get(getRankForMod().toUpperCase());
+    }
+
+    enum Rank {
+        ADMIN,
+        MODERATOR,
+        HELPER,
+        YOUTUBER,
+        MVP_PLUS_PLUS,
+        MVP_PLUS,
+        MVP,
+        VIP_PLUS,
+        VIP,
+        NONE;
+
+        static Rank get(String in) {
+            for (Rank rank : values()) {
+                if (rank.name().equalsIgnoreCase(in))
+                    return rank;
+            }
+            return NONE;
+        }
+
+        boolean has(Rank other) {
+            return ordinal() >= other.ordinal();
+        }
     }
 }
 

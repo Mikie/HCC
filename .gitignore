@@ -1,9 +1,10 @@
-.idea/*
-.iml
+*.iml
 build/
 .gradle/
 out/
 run/
 src/api/
 src/test/
-HCC.iml
+.idea/
+gradle/
+gradlew

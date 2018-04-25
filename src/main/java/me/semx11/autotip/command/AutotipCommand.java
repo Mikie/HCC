@@ -1,17 +1,40 @@
+/*
+ *     Copyright (C) 2018  Hyperium <https://hyperium.cc/>
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU Lesser General Public License as published
+ *     by the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU Lesser General Public License for more details.
+ *
+ *     You should have received a copy of the GNU Lesser General Public License
+ *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package me.semx11.autotip.command;
 
-import com.hcc.commands.BaseCommand;
+import cc.hyperium.commands.BaseCommand;
+import cc.hyperium.commands.CommandException;
+import cc.hyperium.commands.CommandUsageException;
+
+import java.util.Collections;
+import java.util.List;
+
 import me.semx11.autotip.Autotip;
 import me.semx11.autotip.event.HypixelListener;
 import me.semx11.autotip.event.Tipper;
 import me.semx11.autotip.misc.StartLogin;
 import me.semx11.autotip.misc.Stats;
 import me.semx11.autotip.misc.TipTracker;
-import me.semx11.autotip.util.ChatColor;
+import cc.hyperium.utils.ChatColor;
 import me.semx11.autotip.util.ClientMessage;
 import me.semx11.autotip.util.FileUtil;
 import me.semx11.autotip.util.Versions;
-import net.minecraft.command.ICommandSender;
+
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.DayOfWeek;
@@ -22,21 +45,23 @@ import java.time.format.DateTimeFormatter;
 
 public class AutotipCommand implements BaseCommand {
 
-    public String getCommandName() {
+    @Override
+    public String getName() {
         return "autotip";
     }
 
-    public int getRequiredPermissionLevel() {
-        return 0;
+    @Override
+    public String getUsage() {
+        return ChatColor.RED + "Usage: /autotip <stats, info, messages, toggle, time>";
     }
-
-    public String getCommandUsage(ICommandSender sender) {
-        return "autotip <stats, info, messages, toggle, time>";
+    
+    @Override
+    public List<String> getCommandAliases() {
+        return Collections.singletonList("at");
     }
-
-
-    public void onExecute(String[] args) {
-
+    
+    @Override
+    public void onExecute(String[] args) throws CommandException {
         if (args.length > 0) {
             switch (args[0].toLowerCase()) {
                 case "m":
@@ -53,7 +78,7 @@ public class AutotipCommand implements BaseCommand {
                             null,
                             ChatColor.GOLD + "2Pi's legacy will live on."
                     );
-                    ClientMessage.send("Running in " + "HCC Integration");
+                    ClientMessage.send("Running in " + "Hyperium Integration");
                     ClientMessage.send(
                             "Autotipper: " + (Autotip.toggle ? ChatColor.GREEN + "En"
                                     : ChatColor.RED + "Dis") + "abled");
@@ -156,29 +181,16 @@ public class AutotipCommand implements BaseCommand {
                 case "info+":
                     ClientMessage.separator();
                     ClientMessage.send("Last IP joined: " + HypixelListener.lastIp);
-                    ClientMessage.send("Detected MC version: HCC");
+                    ClientMessage.send("Detected MC version: Hyperium");
                     ClientMessage
                             .send("Current tipqueue: " + StringUtils.join(Tipper.tipQueue, ", "));
                     ClientMessage.separator();
                     break;
                 default:
-                    ClientMessage.send(ChatColor.RED + "Usage: " + getUsage());
-                    break;
+                    throw new CommandUsageException();
             }
         } else {
-            ClientMessage.send(ChatColor.RED + "Usage: " + getUsage());
+            throw new CommandUsageException();
         }
     }
-
-
-    @Override
-    public String getName() {
-        return getCommandName();
-    }
-
-    @Override
-    public String getUsage() {
-        return getCommandUsage(null);
-    }
-
 }
